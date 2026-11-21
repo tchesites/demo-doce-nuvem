@@ -27,7 +27,7 @@ demonstrativo.
 | Cidade | Canoas/RS — Centro |
 | Endereço | Rua das Camélias, 320 · CEP 92310-000 |
 | WhatsApp | `wa.me/5551900000000` |
-| Instagram | [@docenuvem.confeitaria](https://www.instagram.com/docenuvem.confeitaria/) |
+| Instagram | [@docenuvem.confeitaria](https://www.instagram.com/tchesites/) |
 | Seguidores | 12,4 mil (ilustrativo) |
 | Destaques | Nuvens (R$ 25) · Combos de torta + salgados (R$ 100–270) |
 
