@@ -1,0 +1,56 @@
+---
+import Icon from './Icon.astro';
+import { negocio } from '../data/negocio.js';
+---
+
+<a
+  class="whats"
+  href={negocio.whatsappUrl}
+  target="_blank"
+  rel="noopener"
+  aria-label="Pedir no WhatsApp"
+>
+  <Icon name="whatsapp" size={27} />
+</a>
+
+<style>
+  .whats {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 2px solid var(--creme);
+    border-radius: 50%;
+    background: var(--rosa-cta);
+    color: var(--branco);
+    box-shadow: 0 12px 30px rgba(61, 33, 21, 0.3);
+    transition:
+      background-color var(--dur) var(--ease),
+      transform var(--dur) var(--ease);
+  }
+
+  .whats:hover {
+    background: var(--rosa-cta-hover);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 30rem) {
+    .whats {
+      right: 0.9rem;
+      bottom: 0.9rem;
+      width: 3.25rem;
+      height: 3.25rem;
+    }
+  }
+
+  @media print {
+    .whats {
+      display: none;
+    }
+  }
+</style>

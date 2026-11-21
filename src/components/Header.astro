@@ -1,0 +1,266 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { negocio } from '../data/negocio.js';
+
+const links = [
+  { href: '#destaques', label: 'Destaques' },
+  { href: '#combos', label: 'Combos' },
+  { href: '#sobre', label: 'Sobre' },
+  { href: '#como-pedir', label: 'Como pedir' },
+  { href: '#onde-estamos', label: 'Onde estamos' },
+];
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <Logo markOnlyMobile />
+
+    <nav class="nav" aria-label="Navegação principal">
+      <ul class="nav__list">
+        {links.map((link) => (
+          <li><a class="nav__link" href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a
+        class="btn btn--primary btn--compact header__cta"
+        href={negocio.whatsappUrl}
+        target="_blank"
+        rel="noopener"
+      >
+        <Icon name="whatsapp" size={17} />
+        <span class="header__cta-full">Pedir no WhatsApp</span>
+        <span class="header__cta-short">Pedir</span>
+      </a>
+
+      <details class="menu">
+        <summary class="menu__toggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </summary>
+        <nav class="menu__panel" aria-label="Menu mobile">
+          <ul>
+            {links.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+          <a
+            class="btn btn--primary menu__cta"
+            href={negocio.whatsappUrl}
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="whatsapp" size={18} />
+            Pedir no WhatsApp
+          </a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script>
+  const menu = document.querySelector('.menu');
+
+  if (menu) {
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        menu.removeAttribute('open');
+      }
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => menu.removeAttribute('open'));
+    });
+  }
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    border-bottom: 1px solid var(--linha);
+    background: rgba(255, 247, 238, 0.92);
+    backdrop-filter: blur(14px);
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    .header {
+      background: var(--creme);
+    }
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-block: 0.7rem;
+  }
+
+  .nav {
+    margin-left: auto;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+    gap: 1.35rem;
+  }
+
+  .nav__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    color: var(--chocolate);
+    font-size: 0.88rem;
+    font-weight: 700;
+    transition: color var(--dur) var(--ease);
+  }
+
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0.45rem;
+    left: 0;
+    height: 2px;
+    background: var(--rosa);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--dur) var(--ease);
+  }
+
+  .nav__link:hover {
+    color: var(--rosa-cta);
+  }
+
+  .nav__link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-left: 0.25rem;
+  }
+
+  .header__cta {
+    white-space: nowrap;
+  }
+
+  .header__cta-short {
+    display: none;
+  }
+
+  .menu {
+    position: relative;
+    display: none;
+  }
+
+  .menu__toggle {
+    display: grid;
+    width: 2.85rem;
+    height: 2.85rem;
+    border: 1px solid var(--linha);
+    border-radius: 50%;
+    place-content: center;
+    gap: 4px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .menu__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .menu__toggle span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: var(--chocolate);
+    border-radius: 99px;
+  }
+
+  .menu__panel {
+    position: absolute;
+    top: calc(100% + 0.6rem);
+    right: 0;
+    z-index: 50;
+    width: min(18rem, calc(100vw - 2rem));
+    padding: 0.75rem 1.1rem 1.1rem;
+    border: 1px solid var(--linha);
+    border-radius: var(--radius-card);
+    background: var(--creme);
+    box-shadow: var(--shadow);
+  }
+
+  .menu__panel ul {
+    margin-bottom: 0.9rem;
+  }
+
+  .menu__panel li + li {
+    border-top: 1px solid var(--linha);
+  }
+
+  .menu__panel li a {
+    display: flex;
+    align-items: center;
+    min-height: 2.85rem;
+    color: var(--chocolate);
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .menu__panel li a:hover {
+    color: var(--rosa-cta);
+  }
+
+  .menu__cta {
+    width: 100%;
+  }
+
+  @media (max-width: 68rem) {
+    .nav {
+      display: none;
+    }
+
+    .header__actions {
+      margin-left: auto;
+    }
+
+    .menu {
+      display: block;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .header__inner {
+      gap: 0.65rem;
+    }
+
+    .header__cta {
+      padding-inline: 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    .header__cta-full {
+      display: none;
+    }
+
+    .header__cta-short {
+      display: inline;
+    }
+
+    .menu__toggle {
+      width: 2.7rem;
+      height: 2.7rem;
+    }
+  }
+</style>

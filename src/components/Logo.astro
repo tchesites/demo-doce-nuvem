@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/fotos/logo-perfil.jpg';
+
+interface Props {
+  href?: string;
+  light?: boolean;
+  markOnlyMobile?: boolean;
+}
+
+const { href = '#topo', light = false, markOnlyMobile = false } = Astro.props;
+---
+
+<a
+  class:list={[
+    'brand',
+    {
+      'brand--light': light,
+      'brand--mark-only-mobile': markOnlyMobile,
+    },
+  ]}
+  href={href}
+  aria-label="Doce Nuvem — início"
+>
+  <Image
+    class="brand__seal"
+    src={logo}
+    alt=""
+    width={64}
+    height={64}
+    loading="eager"
+  />
+  <span class="brand__stack">
+    <span class="brand__name">Doce Nuvem</span>
+    <span class="brand__script">por Carla Menezes</span>
+  </span>
+</a>
+
+<style>
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    line-height: 1;
+  }
+
+  .brand__seal {
+    flex: 0 0 auto;
+    width: clamp(46px, 6vw, 62px);
+    height: clamp(46px, 6vw, 62px);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .brand__stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+  }
+
+  .brand__name {
+    color: var(--chocolate);
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+  }
+
+  .brand__script {
+    color: var(--rosa-cta);
+    font-family: var(--font-script);
+    font-size: clamp(0.82rem, 1.4vw, 1rem);
+    line-height: 1.1;
+  }
+
+  .brand--light .brand__name {
+    color: var(--creme);
+  }
+
+  .brand--light .brand__script {
+    color: var(--rosa-claro);
+  }
+
+  @media (max-width: 30rem) {
+    .brand--mark-only-mobile .brand__stack {
+      display: none;
+    }
+  }
+</style>
