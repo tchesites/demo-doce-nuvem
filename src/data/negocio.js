@@ -8,7 +8,8 @@ export const negocio = {
   endereco: 'Rua das Camélias, 320',
   cep: '92310-000',
   instagram: '@docenuvem.confeitaria',
-  instagramUrl: 'https://www.instagram.com/docenuvem.confeitaria/',
+  // O @ exibido é fictício; o link aponta sempre para o Instagram da agência.
+  instagramUrl: 'https://www.instagram.com/tchesites/',
   // WhatsApp fictício do projeto demonstrativo.
   whatsappUrl: 'https://wa.me/5551900000000',
   googleMapsUrl:
